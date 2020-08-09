@@ -5,17 +5,24 @@
  */
 package view;
 
+import controller.Controller;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author ESCINF
  */
 public class Ventana extends javax.swing.JFrame {
 
+    private Controller control;
     /**
      * Creates new form Ventana
      */
     public Ventana() {
         initComponents();
+        this.control = new Controller();
     }
 
     /**
@@ -38,7 +45,7 @@ public class Ventana extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 551, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -52,6 +59,11 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        jTextPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextPane1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -82,11 +94,30 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+//        Controller.dibujarFigura(jPanel1.getGraphics());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String comando = jTextPane1.getText();
+            comando = comando.concat(" ");
+            Controller.dibujarFigura(jPanel1.getGraphics(),comando);
+            jTextPane1.setText("");
+            
+        }
+    }//GEN-LAST:event_jTextPane1KeyReleased
 
     /**
      * @param args the command line arguments
      */
+//    public void paint(Graphics g){
+//        super.paint(g);
+//        Graphics2D pg = (Graphics2D) g;
+//        pg.drawOval(30, 30, 15, 15);
+//    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
