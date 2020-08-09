@@ -47,4 +47,9 @@ public class Circle extends Figure {
         return "Circle{" + "radio=" + radio + '}';
     }
 
+    @Override
+    public double calculaArea() {
+        return super.calculaArea();
+    }
+
 }

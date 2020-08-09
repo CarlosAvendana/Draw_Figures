@@ -5,6 +5,7 @@ public class Figure {
     protected int indentifier;
     protected double coordenadaX;
     protected double coordenaY;
+    protected double area;
 
     @Override
     public String toString() {
@@ -13,4 +14,7 @@ public class Figure {
                 + ", coordenaY=" + coordenaY + '}';
     }
 
+    public double calculaArea() {
+        return area;
+    }
 }

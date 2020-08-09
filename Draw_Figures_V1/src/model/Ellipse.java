@@ -57,4 +57,8 @@ public class Ellipse extends Figure {
         return "Ellipse{" + "radioMenor=" + radioMenor + ", radioMayor=" + radioMayor + '}';
     }
 
+    @Override
+    public double calculaArea() {
+        return super.calculaArea(); //To change body of generated methods, choose Tools | Templates.
+    }
 }

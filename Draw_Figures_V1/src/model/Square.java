@@ -47,4 +47,8 @@ public class Square extends Figure {
         return "Square{" + "logintudLado=" + logintudLado + '}';
     }
 
+    @Override
+    public double calculaArea() {
+        return super.calculaArea(); //To change body of generated methods, choose Tools | Templates.
+    }
 }

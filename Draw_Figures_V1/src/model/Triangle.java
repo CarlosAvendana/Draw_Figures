@@ -67,4 +67,8 @@ public class Triangle extends Figure {
         return "Triangle{" + "vertice1=" + vertice1 + ", vertice2=" + vertice2 + ", vertice3=" + vertice3 + '}';
     }
 
+    @Override
+    public double calculaArea() {
+        return super.calculaArea();
+    }
 }

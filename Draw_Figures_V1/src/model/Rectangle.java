@@ -57,4 +57,8 @@ public class Rectangle extends Figure {
         return "Rectangle{" + "base=" + base + ", altura=" + altura + '}';
     }
 
+    @Override
+    public double calculaArea() {
+        return super.calculaArea(); //To change body of generated methods, choose Tools | Templates.
+    }
 }

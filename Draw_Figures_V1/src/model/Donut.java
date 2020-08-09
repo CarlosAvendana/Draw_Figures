@@ -57,4 +57,8 @@ public class Donut extends Figure {
         return "Donut{" + "radioMenor=" + radioMenor + ", radioMayor=" + radioMayor + '}';
     }
 
+    @Override
+    public double calculaArea() {
+        return super.calculaArea(); //To change body of generated methods, choose Tools | Templates.
+    }
 }
