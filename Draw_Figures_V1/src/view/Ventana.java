@@ -1,14 +1,14 @@
 
 package view;
 
-
+import controller.Controller;
+import java.awt.event.KeyEvent;
 public class Ventana extends javax.swing.JFrame {
 
     
     public Ventana() {
         initComponents();
         setResizable(false);
-        this.control = new Controller();
     }
 
     
@@ -44,6 +44,11 @@ public class Ventana extends javax.swing.JFrame {
 
         panelDeDibujo.setViewportView(VentanaDibujo);
 
+        panelTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                panelTextoKeyReleased(evt);
+            }
+        });
         PanelTextoScroll.setViewportView(panelTexto);
 
         fileMenu.setText("File");
@@ -65,13 +70,8 @@ public class Ventana extends javax.swing.JFrame {
 
         menuBar.add(informationMenu);
 
-        jTextPane1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextPane1KeyReleased(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTextPane1);
         setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,13 +101,23 @@ public class Ventana extends javax.swing.JFrame {
     private void jTextPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyReleased
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            String comando = jTextPane1.getText();
+            String comando = panelTexto.getText();
             comando = comando.concat(" ");
-            Controller.dibujarFigura(jPanel1.getGraphics(),comando);
-            jTextPane1.setText("");
+            Controller.dibujarFigura(VentanaDibujo.getGraphics(),comando);
+            panelTexto.setText("");
             
         }
     }//GEN-LAST:event_jTextPane1KeyReleased
+
+    private void panelTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelTextoKeyReleased
+        // TODO add your handling code here:
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String comando = panelTexto.getText();
+            comando = comando.concat(" ");
+            Controller.dibujarFigura(VentanaDibujo.getGraphics(),comando);
+            panelTexto.setText("");
+        }
+    }//GEN-LAST:event_panelTextoKeyReleased
 
     /**
      * @param args the command line arguments
