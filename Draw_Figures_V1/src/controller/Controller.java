@@ -50,9 +50,9 @@ public class Controller {
                 y2 = Double.parseDouble(arr[4]);
                 x3 = Double.parseDouble(arr[5]);
                 y3 = Double.parseDouble(arr[6]);
-                g.draw(new Line2D.Double(x,y,x2,y2));
-                g.draw(new Line2D.Double(x,y,x3,y3));
-                g.draw(new Line2D.Double(x2,y2,x3,y3));
+                g.draw(new Line2D.Double(x, y, x2, y2));
+                g.draw(new Line2D.Double(x, y, x3, y3));
+                g.draw(new Line2D.Double(x2, y2, x3, y3));
                 break;
             case "donut":
                 rme = Double.parseDouble(arr[3]);
@@ -63,12 +63,12 @@ public class Controller {
                 y2 = y + rme;
                 x3 = x - rma;
                 y3 = y + rma;
-                d = 2*rma;
-                g.draw(new Ellipse2D.Double(x2,y2,2*rme,2*rme));
-                g.draw(new Ellipse2D.Double(x3,y3,d,d));
+                d = 2 * rma;
+                g.draw(new Ellipse2D.Double(x2, y2, 2 * rme, 2 * rme));
+                g.draw(new Ellipse2D.Double(x3, y3, d, d));
                 break;
             case "ellipse":
-                
+
                 break;
         }
     }

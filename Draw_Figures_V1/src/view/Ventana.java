@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import java.awt.event.KeyEvent;
+
 public class Ventana extends javax.swing.JFrame {
 
     public Ventana() {
@@ -97,21 +98,21 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jTextPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String comando = panelTexto.getText();
             comando = comando.concat(" ");
-            Controller.dibujarFigura(VentanaDibujo.getGraphics(),comando);
+            Controller.dibujarFigura(VentanaDibujo.getGraphics(), comando);
             panelTexto.setText("");
-            
+
         }
     }//GEN-LAST:event_jTextPane1KeyReleased
 
     private void panelTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelTextoKeyReleased
         // TODO add your handling code here:
-                if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String comando = panelTexto.getText();
             comando = comando.concat(" ");
-            Controller.dibujarFigura(VentanaDibujo.getGraphics(),comando);
+            Controller.dibujarFigura(VentanaDibujo.getGraphics(), comando);
             panelTexto.setText("");
         }
     }//GEN-LAST:event_panelTextoKeyReleased
@@ -124,7 +125,6 @@ public class Ventana extends javax.swing.JFrame {
 //        Graphics2D pg = (Graphics2D) g;
 //        pg.drawOval(30, 30, 15, 15);
 //    }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
