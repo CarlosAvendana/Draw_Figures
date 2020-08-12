@@ -4,10 +4,12 @@ import controller.Controller;
 import java.awt.event.KeyEvent;
 
 public class Ventana extends javax.swing.JFrame {
+    private Controller control;
 
     public Ventana() {
         initComponents();
         setResizable(false);
+        control = new Controller();
     }
 
     @SuppressWarnings("unchecked")
@@ -101,8 +103,8 @@ public class Ventana extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String comando = panelTexto.getText();
             comando = comando.concat(" ");
-            Controller.dibujarFigura(VentanaDibujo.getGraphics(), comando);
-            panelTexto.setText("");
+            control.dibujarFigura(VentanaDibujo.getGraphics(), comando);
+            //panelTexto.setText("");
 
         }
     }//GEN-LAST:event_jTextPane1KeyReleased
@@ -112,7 +114,7 @@ public class Ventana extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String comando = panelTexto.getText();
             comando = comando.concat(" ");
-            Controller.dibujarFigura(VentanaDibujo.getGraphics(), comando);
+            control.dibujarFigura(VentanaDibujo.getGraphics(), comando);
             panelTexto.setText("");
         }
     }//GEN-LAST:event_panelTextoKeyReleased
