@@ -1,5 +1,7 @@
 package view;
 
+import controller.Controller;
+import java.awt.event.KeyEvent;
 public class Ventana extends javax.swing.JFrame {
 
     public Ventana() {
@@ -39,6 +41,11 @@ public class Ventana extends javax.swing.JFrame {
 
         panelDeDibujo.setViewportView(VentanaDibujo);
 
+        panelTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                panelTextoKeyReleased(evt);
+            }
+        });
         PanelTextoScroll.setViewportView(panelTexto);
 
         fileMenu.setText("File");
@@ -88,9 +95,36 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DeveloperInfoOptionActionPerformed
 
+    private void jTextPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String comando = panelTexto.getText();
+            comando = comando.concat(" ");
+            Controller.dibujarFigura(VentanaDibujo.getGraphics(),comando);
+            panelTexto.setText("");
+            
+        }
+    }//GEN-LAST:event_jTextPane1KeyReleased
+
+    private void panelTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelTextoKeyReleased
+        // TODO add your handling code here:
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String comando = panelTexto.getText();
+            comando = comando.concat(" ");
+            Controller.dibujarFigura(VentanaDibujo.getGraphics(),comando);
+            panelTexto.setText("");
+        }
+    }//GEN-LAST:event_panelTextoKeyReleased
+
     /**
      * @param args the command line arguments
      */
+//    public void paint(Graphics g){
+//        super.paint(g);
+//        Graphics2D pg = (Graphics2D) g;
+//        pg.drawOval(30, 30, 15, 15);
+//    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
