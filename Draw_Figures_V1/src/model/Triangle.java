@@ -6,9 +6,8 @@ public class Triangle extends Figure {
     private double vertice2;
     private double vertice3;
     private double vertice4;
-    
 
-    public Triangle(double vertice1, double vertice2, double vertice3, double vertice4, double cx,double cy) {
+    public Triangle(double vertice1, double vertice2, double vertice3, double vertice4, double cx, double cy) {
         this.vertice1 = vertice1;
         this.vertice2 = vertice2;
         this.vertice3 = vertice3;
@@ -67,7 +66,7 @@ public class Triangle extends Figure {
 
     @Override
     public String toString() {
-        return "Triangle{" + "vertice1= (" + vertice1+", "+vertice2 + "), vertice2= (" + vertice3+", "+vertice4 + "), vertice3= (" + coordenadaX+", "+coordenaY + ")}";
+        return "Triangle{" + "vertice1= (" + vertice1 + ", " + vertice2 + "), vertice2= (" + vertice3 + ", " + vertice4 + "), vertice3= (" + coordenadaX + ", " + coordenaY + ")}";
     }
 
     @Override

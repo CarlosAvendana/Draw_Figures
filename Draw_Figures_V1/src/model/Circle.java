@@ -8,6 +8,7 @@ public class Circle extends Figure {
         this.radio = radio;
         this.coordenaY = cy;
         this.coordenadaX = cx;
+
     }
 
     public double getRadio() {
@@ -50,6 +51,16 @@ public class Circle extends Figure {
     @Override
     public double calculaArea() {
         return super.calculaArea();
+    }
+
+    @Override
+    public void setNombreFigura(String nombreFigura) {
+        super.setNombreFigura(nombreFigura); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getNombreFigura() {
+        return super.getNombreFigura(); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

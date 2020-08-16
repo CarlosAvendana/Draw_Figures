@@ -6,11 +6,7 @@
 package controller;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
+import javax.swing.JTextArea;
 import model.Model;
 
 /**
@@ -18,13 +14,18 @@ import model.Model;
  * @author ESCINF
  */
 public class Controller {
-    
+
     private Model m;
-    public Controller(){
+
+    public Controller() {
         this.m = new Model();
     }
+//
+//    public void dibujarFigura(Graphics pg, String c) {
+//        this.m.dibujarFigura(pg, c);
+//    }
 
-    public void dibujarFigura(Graphics pg, String c) {
-        this.m.dibujarFigura(pg,c);
+    public void dibujarFigura(Graphics graphics, String comando, JTextArea muestraMensajePantalla) {
+        this.m.dibujarFigura(graphics, comando, muestraMensajePantalla);
     }
 }

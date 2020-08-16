@@ -7,21 +7,22 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import javax.swing.JTextArea;
 
 public class Model {
 
     double totalAreaFiguras;
     ArrayList<Figure> listaFiguras;
     Graphics2D g;
-    
-    public Model(){
+
+    public Model() {
         this.totalAreaFiguras = 0.0;
         this.listaFiguras = new ArrayList<>();
         this.g = null;
     }
     //g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-    public void dibujarFigura(Graphics pg, String command) {
+    public void dibujarFigura(Graphics pg, String command, JTextArea areaMensajes) {
         String[] arr = command.split(" ");
         Graphics2D g = (Graphics2D) pg;
         double x, y, l, r, b, h, x2, y2, x3, y3, rme, rma, width, height;
@@ -33,6 +34,7 @@ public class Model {
                 r = Double.parseDouble(arr[2]);
                 g.draw(new Ellipse2D.Double(x - r / 2, y - r / 2, r, r));
                 this.insertCirle(r, x, y);
+                areaMensajes.setText("Figura" + this.listaFiguras.size() + "Circulo con area");
                 break;
             case "square":
                 x = Double.parseDouble(arr[1]);
@@ -59,7 +61,7 @@ public class Model {
                 g.draw(new Line2D.Double(x, y, x2, y2));
                 g.draw(new Line2D.Double(x, y, x3, y3));
                 g.draw(new Line2D.Double(x2, y2, x3, y3));
-                this.insertTriangle(x,y,x2, y2,x3, y3);
+                this.insertTriangle(x, y, x2, y2, x3, y3);
                 break;
             case "donut":
                 rme = Double.parseDouble(arr[3]);
@@ -68,6 +70,7 @@ public class Model {
                 y = Double.parseDouble(arr[2]);
                 g.draw(new Ellipse2D.Double(x - rme / 2, y - rme / 2, rme, rme));
                 g.draw(new Ellipse2D.Double(x - rma / 2, y - rma / 2, rma, rma));
+                this.insertDonut(rme, rma, x, y);
                 break;
             case "ellipse":
                 x = Double.parseDouble(arr[1]);
@@ -75,7 +78,16 @@ public class Model {
                 width = Double.parseDouble(arr[3]);
                 height = Double.parseDouble(arr[4]);
                 g.draw(new Ellipse2D.Double(x, y, width, height));
+                this.insertEllipse(width, height, x, y);
                 break;
+            case "list\r\n":
+                this.listarFiguras(areaMensajes);
+
+                break;
+            default:
+                System.out.println("Error");
+                break;
+
         }
     }
 
@@ -107,6 +119,39 @@ public class Model {
     public void insertSquare(double logintudLado, double cx, double cy) {
         Square s = new Square(logintudLado, cx, cy);
         this.listaFiguras.add(s);
+    }
+
+    public void listarFiguras(JTextArea area) {
+        String f = "";
+
+        if (this.listaFiguras.size() == 0) {
+            area.setText("No hay figuras");
+        } else {
+            for (int i = 0; i < this.listaFiguras.size(); i++) {
+                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Circle")) {
+                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
+                }
+                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Ellipse")) {
+                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
+                }
+                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Rectangle")) {
+                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
+                }
+                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Square")) {
+                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
+                }
+                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Triangle")) {
+                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
+                }
+                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Donut")) {
+                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
+                }
+
+            }//cierre del for 
+            f += "Figuras en total:" + this.listaFiguras.size() + "\n";
+            area.setText(f);
+        }
+
     }
 
 }
