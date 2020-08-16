@@ -64,9 +64,9 @@ public class ReadFile {
     }
 
     public void insertTriangle(String vertice1, String vertice2, String vertice3, String cx, String cy) {
-        Triangle t = new Triangle(Double.parseDouble(vertice1), Double.parseDouble(vertice2), Double.parseDouble(vertice3), Double.parseDouble(cx), Double.parseDouble(cy));
-        this.figureList.add(t);
-        this.contadorFiguras++;
+        //Triangle t = new Triangle(Double.parseDouble(vertice1), Double.parseDouble(vertice2), Double.parseDouble(vertice3), Double.parseDouble(cx), Double.parseDouble(cy));
+        //this.figureList.add(t);
+        //this.contadorFiguras++;
     }
 
     public void insertSquare(String logintudLado, String cx, String cy) {
