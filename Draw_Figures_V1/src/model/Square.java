@@ -1,5 +1,9 @@
 package model;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+
 public class Square extends Figure {
 
     private double logintudLado;
@@ -49,6 +53,12 @@ public class Square extends Figure {
 
     @Override
     public double calculaArea() {
-        return super.calculaArea(); //To change body of generated methods, choose Tools | Templates.
+        double areaAux = Math.pow(this.logintudLado, 2);
+        return areaAux;
+    }
+    
+    public void dibujar(Graphics cg){
+        Graphics2D dg = (Graphics2D) cg;
+        dg.draw(new Rectangle2D.Double(this.coordenadaX,this.coordenaY,this.logintudLado,this.logintudLado));
     }
 }

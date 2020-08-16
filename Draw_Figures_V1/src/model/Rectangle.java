@@ -1,5 +1,9 @@
 package model;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+
 public class Rectangle extends Figure {
 
     private double base;
@@ -59,6 +63,12 @@ public class Rectangle extends Figure {
 
     @Override
     public double calculaArea() {
-        return super.calculaArea(); //To change body of generated methods, choose Tools | Templates.
+        double areaAux = this.base * this.altura;
+        return areaAux;
+    }
+    
+    public void dibujar(Graphics cg){
+        Graphics2D dg = (Graphics2D) cg;
+        dg.draw(new Rectangle2D.Double(this.coordenadaX,this.coordenaY,this.base,this.altura));
     }
 }

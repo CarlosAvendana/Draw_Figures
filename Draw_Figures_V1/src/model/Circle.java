@@ -1,5 +1,9 @@
 package model;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+
 public class Circle extends Figure {
 
     private double radio;
@@ -49,7 +53,14 @@ public class Circle extends Figure {
 
     @Override
     public double calculaArea() {
-        return super.calculaArea();
+        double areaAux = Math.PI * Math.pow(this.radio, 2);
+        return areaAux;
+    }
+    
+    @Override
+    public void dibujar(Graphics cg){
+        Graphics2D gd = (Graphics2D) cg;
+        gd.draw(new Ellipse2D.Double((this.coordenadaX - (this.radio/2)),(this.coordenaY - (this.radio/2)),2 * this.radio,2 * this.radio));
     }
 
 }

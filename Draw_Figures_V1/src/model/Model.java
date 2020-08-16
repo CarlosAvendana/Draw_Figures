@@ -1,11 +1,6 @@
 package model;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 public class Model {
@@ -21,24 +16,20 @@ public class Model {
     }
     //g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-    public void dibujarFigura(Graphics pg, String command) {
+    public void dibujarFigura(String command) {
         String[] arr = command.split(" ");
-        Graphics2D g = (Graphics2D) pg;
         double x, y, l, r, b, h, x2, y2, x3, y3, rme, rma, width, height;
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         switch (arr[0]) {
             case "circle":
                 x = Double.parseDouble(arr[1]);
                 y = Double.parseDouble(arr[2]);
-                r = Double.parseDouble(arr[2]);
-                g.draw(new Ellipse2D.Double(x - r / 2, y - r / 2, r, r));
+                r = Double.parseDouble(arr[3]);
                 this.insertCirle(r, x, y);
                 break;
             case "square":
                 x = Double.parseDouble(arr[1]);
                 y = Double.parseDouble(arr[2]);
                 l = Double.parseDouble(arr[3]);
-                g.draw(new Rectangle2D.Double(x, y, l, l));
                 this.insertSquare(l, x, y);
                 break;
             case "rectangle":
@@ -46,7 +37,6 @@ public class Model {
                 y = Double.parseDouble(arr[2]);
                 b = Double.parseDouble(arr[3]);
                 h = Double.parseDouble(arr[4]);
-                g.draw(new Rectangle2D.Double(x, y, b, h));
                 this.insertRectangle(b, h, x, y);
                 break;
             case "triangle":
@@ -56,9 +46,6 @@ public class Model {
                 y2 = Double.parseDouble(arr[4]);
                 x3 = Double.parseDouble(arr[5]);
                 y3 = Double.parseDouble(arr[6]);
-                g.draw(new Line2D.Double(x, y, x2, y2));
-                g.draw(new Line2D.Double(x, y, x3, y3));
-                g.draw(new Line2D.Double(x2, y2, x3, y3));
                 this.insertTriangle(x,y,x2, y2,x3, y3);
                 break;
             case "donut":
@@ -66,15 +53,14 @@ public class Model {
                 rma = Double.parseDouble(arr[4]);
                 x = Double.parseDouble(arr[1]);
                 y = Double.parseDouble(arr[2]);
-                g.draw(new Ellipse2D.Double(x - rme / 2, y - rme / 2, rme, rme));
-                g.draw(new Ellipse2D.Double(x - rma / 2, y - rma / 2, rma, rma));
+                this.insertDonut(rme, rma, x, y);
                 break;
             case "ellipse":
                 x = Double.parseDouble(arr[1]);
                 y = Double.parseDouble(arr[2]);
                 width = Double.parseDouble(arr[3]);
                 height = Double.parseDouble(arr[4]);
-                g.draw(new Ellipse2D.Double(x, y, width, height));
+                this.insertEllipse(width, height, x, y);
                 break;
         }
     }
@@ -107,6 +93,10 @@ public class Model {
     public void insertSquare(double logintudLado, double cx, double cy) {
         Square s = new Square(logintudLado, cx, cy);
         this.listaFiguras.add(s);
+    }
+
+    public ArrayList<Figure> getFiguras() {
+        return this.listaFiguras;
     }
 
 }

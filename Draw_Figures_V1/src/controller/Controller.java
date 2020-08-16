@@ -7,10 +7,13 @@ package controller;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.List;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import model.Figure;
 import model.Model;
 
 /**
@@ -24,7 +27,11 @@ public class Controller {
         this.m = new Model();
     }
 
-    public void dibujarFigura(Graphics pg, String c) {
-        this.m.dibujarFigura(pg,c);
+    public void dibujarFigura(String c) {
+        this.m.dibujarFigura(c);
+    }
+
+    public ArrayList<Figure> getFiguras() {
+        return this.m.getFiguras();
     }
 }

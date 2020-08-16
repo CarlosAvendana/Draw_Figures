@@ -1,15 +1,26 @@
 package view;
 
 import controller.Controller;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import model.Figure;
 
 public class Ventana extends javax.swing.JFrame {
-    private Controller control;
+
+    private final Controller control;
 
     public Ventana() {
         initComponents();
         setResizable(false);
         control = new Controller();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        ArrayList<Figure> lf = this.control.getFiguras();
+        lf.forEach((f) -> f.dibujar(VentanaDibujo.getGraphics()));
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +38,6 @@ public class Ventana extends javax.swing.JFrame {
         DeveloperInfoOption = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(755, 486));
 
         VentanaDibujo.setPreferredSize(new java.awt.Dimension(1000, 1000));
 
@@ -99,14 +109,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_DeveloperInfoOptionActionPerformed
 
     private void jTextPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyReleased
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String comando = panelTexto.getText();
-            comando = comando.concat(" ");
-            control.dibujarFigura(VentanaDibujo.getGraphics(), comando);
-            //panelTexto.setText("");
 
-        }
     }//GEN-LAST:event_jTextPane1KeyReleased
 
     private void panelTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelTextoKeyReleased
@@ -114,8 +117,12 @@ public class Ventana extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String comando = panelTexto.getText();
             comando = comando.concat(" ");
-            control.dibujarFigura(VentanaDibujo.getGraphics(), comando);
-            panelTexto.setText("");
+            control.dibujarFigura(comando);
+            this.repaint();
+            
+            //ArrayList<Figure> lf = this.control.getFiguras();
+            //lf.forEach((f) -> f.dibujar(VentanaDibujo.getGraphics()));
+            //panelTexto.setText("");
         }
     }//GEN-LAST:event_panelTextoKeyReleased
 
@@ -153,6 +160,7 @@ public class Ventana extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Ventana().setVisible(true);
             }

@@ -1,5 +1,9 @@
 package model;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+
 public class Donut extends Figure {
 
     private double radioMenor;
@@ -59,6 +63,20 @@ public class Donut extends Figure {
 
     @Override
     public double calculaArea() {
-        return super.calculaArea(); //To change body of generated methods, choose Tools | Templates.
+        double areaAux = Math.PI * (Math.pow(this.radioMayor, 2) - Math.pow(this.radioMenor, 2));
+        return areaAux;
+    }
+    
+    @Override
+    public void dibujar(Graphics cg){
+        Graphics2D gd = (Graphics2D) cg;
+        gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMenor/2,
+                this.coordenaY - this.radioMenor/2,
+                this.radioMenor,
+                this.radioMenor));
+        gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMayor/2,
+                this.coordenaY - this.radioMayor/2,
+                this.radioMayor,
+                this.radioMayor));
     }
 }

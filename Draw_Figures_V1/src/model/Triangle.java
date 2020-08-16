@@ -1,5 +1,9 @@
 package model;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
+
 public class Triangle extends Figure {
 
     private double vertice1;
@@ -72,6 +76,19 @@ public class Triangle extends Figure {
 
     @Override
     public double calculaArea() {
-        return super.calculaArea();
+        double lado1 = Math.sqrt(Math.pow((this.vertice1 - this.vertice3), 2) + Math.pow((this.vertice2 - this.vertice4), 2));
+        double lado2 = Math.sqrt(Math.pow((this.vertice1 - this.coordenadaX), 2) + Math.pow((this.vertice2 - this.coordenaY), 2));
+        double lado3 = Math.sqrt(Math.pow((this.vertice3 - this.coordenadaX), 2) + Math.pow((this.vertice4 - this.coordenaY), 2));
+        double sp = (lado1+lado2+lado3)/2;
+        double areaAux = Math.sqrt(sp *( (sp-lado1) * (sp - lado2) * (sp-lado3)));
+        return areaAux;
+    }
+    
+    @Override
+    public void dibujar(Graphics cg){
+        Graphics2D dg = (Graphics2D) cg;
+        dg.draw(new Line2D.Double(this.vertice1,this.vertice2,this.vertice3,this.vertice4));
+        dg.draw(new Line2D.Double(this.vertice1,this.vertice2,this.coordenadaX,this.coordenaY));
+        dg.draw(new Line2D.Double(this.vertice3,this.vertice4,this.coordenadaX,this.coordenaY));
     }
 }

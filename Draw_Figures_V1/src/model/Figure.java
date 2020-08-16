@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Graphics;
+
 public class Figure {
 
     protected int indentifier;
@@ -16,5 +18,9 @@ public class Figure {
 
     public double calculaArea() {
         return area;
+    }
+    
+    public void dibujar(Graphics g){
+        
     }
 }
