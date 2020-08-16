@@ -58,7 +58,8 @@ public class Rectangle extends Figure {
 
     @Override
     public String toString() {
-        return "Rectangle{" + "base=" + base + ", altura=" + altura + '}';
+        return "rectangle " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y base= " + base + ", y altura= " + altura + ".";
+
     }
 
     @Override

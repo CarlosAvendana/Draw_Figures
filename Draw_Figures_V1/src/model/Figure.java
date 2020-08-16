@@ -8,6 +8,7 @@ public class Figure {
     protected double coordenadaX;
     protected double coordenaY;
     protected double area;
+    protected String nombreFigura;
 
     @Override
     public String toString() {
@@ -23,4 +24,13 @@ public class Figure {
     public void dibujar(Graphics g){
         
     }
+
+    public String getNombreFigura() {
+        return nombreFigura;
+    }
+
+    public void setNombreFigura(String nombreFigura) {
+        this.nombreFigura = nombreFigura;
+    }
+
 }

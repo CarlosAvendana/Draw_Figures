@@ -2,21 +2,22 @@ package model;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import javax.swing.JTextArea;
 
 public class Model {
 
     double totalAreaFiguras;
     ArrayList<Figure> listaFiguras;
     Graphics2D g;
-    
-    public Model(){
+
+    public Model() {
         this.totalAreaFiguras = 0.0;
         this.listaFiguras = new ArrayList<>();
         this.g = null;
     }
     //g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-    public void dibujarFigura(String command) {
+    public void dibujarFigura(String command, JTextArea areaMensajes) {
         String[] arr = command.split(" ");
         double x, y, l, r, b, h, x2, y2, x3, y3, rme, rma, width, height;
         switch (arr[0]) {
@@ -25,6 +26,7 @@ public class Model {
                 y = Double.parseDouble(arr[2]);
                 r = Double.parseDouble(arr[3]);
                 this.insertCirle(r, x, y);
+//                areaMensajes.setText("Figura" + this.listaFiguras.size() + "Circulo con area");
                 break;
             case "square":
                 x = Double.parseDouble(arr[1]);
@@ -62,6 +64,14 @@ public class Model {
                 height = Double.parseDouble(arr[4]);
                 this.insertEllipse(width, height, x, y);
                 break;
+            case "list\r\n":
+                this.listarFiguras(areaMensajes);
+
+                break;
+            default:
+                System.out.println("Error");
+                break;
+
         }
     }
 
@@ -97,6 +107,34 @@ public class Model {
 
     public ArrayList<Figure> getFiguras() {
         return this.listaFiguras;
+    public void listarFiguras(JTextArea area) {
+        String f = "";
+
+        if (this.listaFiguras.size() == 0) {
+            area.setText("No hay figuras");
+        } else {
+            for (int i = 0; i < this.listaFiguras.size(); i++) {
+
+                f += "Figura #" + i + " " + this.listaFiguras.get(i).toString() + "\n";
+
+            }//cierre del for 
+            f += "Figuras en total:" + this.listaFiguras.size() + "\n";
+            area.setText(f);
+        }
+
+    }
+
+    public void comandoHelp(JTextArea area) {
+        String f = "";
+        f += "Acaba de ingresar el comando help en este comando podra ver la lista de comandos y como usarlos para la creación de figuras\n"
+                + ",tambien como cargar el archivo.\n"
+                + "Para cargar un archivos de textro por favor dirigirse a la barra del menu y seleccionar file y load\n"
+                + "Una ve en el seleccionador de archivos seleccione el archivo que quiera cargar en la aplicacion.\n"
+                + "---------------------------------------------------------------------------------------------------\n"
+                + "\tLista de mandos\t\n"
+                + "circle coordenadaX coordenadaY radio\n"
+                + "donut coordenadaX coordenadaY radio\n";
+
     }
 
 }

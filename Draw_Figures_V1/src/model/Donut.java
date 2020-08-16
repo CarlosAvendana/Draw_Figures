@@ -58,7 +58,9 @@ public class Donut extends Figure {
 
     @Override
     public String toString() {
-        return "Donut{" + "radioMenor=" + radioMenor + ", radioMayor=" + radioMayor + '}';
+
+        return "Donut " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y radio menor =" + radioMenor + ", radio mayor =" + this.radioMayor;
+
     }
 
     @Override

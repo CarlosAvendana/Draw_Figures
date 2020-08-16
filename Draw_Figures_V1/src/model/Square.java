@@ -48,7 +48,8 @@ public class Square extends Figure {
 
     @Override
     public String toString() {
-        return "Square{" + "logintudLado=" + logintudLado + '}';
+        return "square " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y longitud de lado= " + this.logintudLado + ".";
+
     }
 
     @Override

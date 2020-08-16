@@ -12,7 +12,6 @@ public class Ventana extends javax.swing.JFrame {
 
     public Ventana() {
         initComponents();
-        setResizable(false);
         control = new Controller();
     }
 
@@ -31,6 +30,8 @@ public class Ventana extends javax.swing.JFrame {
         VentanaDibujo = new javax.swing.JPanel();
         PanelTextoScroll = new javax.swing.JScrollPane();
         panelTexto = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        muestraMensajePantalla = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadFileOption = new javax.swing.JMenuItem();
@@ -39,17 +40,17 @@ public class Ventana extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        VentanaDibujo.setPreferredSize(new java.awt.Dimension(1000, 1000));
+        VentanaDibujo.setPreferredSize(new java.awt.Dimension(2000, 2000));
 
         javax.swing.GroupLayout VentanaDibujoLayout = new javax.swing.GroupLayout(VentanaDibujo);
         VentanaDibujo.setLayout(VentanaDibujoLayout);
         VentanaDibujoLayout.setHorizontalGroup(
             VentanaDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 2000, Short.MAX_VALUE)
         );
         VentanaDibujoLayout.setVerticalGroup(
             VentanaDibujoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 2000, Short.MAX_VALUE)
         );
 
         panelDeDibujo.setViewportView(VentanaDibujo);
@@ -60,6 +61,11 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         PanelTextoScroll.setViewportView(panelTexto);
+
+        muestraMensajePantalla.setEditable(false);
+        muestraMensajePantalla.setColumns(20);
+        muestraMensajePantalla.setRows(5);
+        jScrollPane1.setViewportView(muestraMensajePantalla);
 
         fileMenu.setText("File");
 
@@ -86,19 +92,26 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+            .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
+                .addContainerGap()
                 .addComponent(PanelTextoScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(PanelTextoScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(PanelTextoScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -117,12 +130,9 @@ public class Ventana extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String comando = panelTexto.getText();
             comando = comando.concat(" ");
-            control.dibujarFigura(comando);
+            control.dibujarFigura(comando, muestraMensajePantalla);
+            panelTexto.setText("");
             this.repaint();
-            
-            //ArrayList<Figure> lf = this.control.getFiguras();
-            //lf.forEach((f) -> f.dibujar(VentanaDibujo.getGraphics()));
-            //panelTexto.setText("");
         }
     }//GEN-LAST:event_panelTextoKeyReleased
 
@@ -173,8 +183,10 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel VentanaDibujo;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu informationMenu;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem loadFileOption;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JTextArea muestraMensajePantalla;
     private javax.swing.JScrollPane panelDeDibujo;
     private javax.swing.JTextPane panelTexto;
     // End of variables declaration//GEN-END:variables
