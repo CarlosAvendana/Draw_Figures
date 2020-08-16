@@ -66,7 +66,7 @@ public class Triangle extends Figure {
 
     @Override
     public String toString() {
-        return "Triangle{" + "vertice1= (" + vertice1 + ", " + vertice2 + "), vertice2= (" + vertice3 + ", " + vertice4 + "), vertice3= (" + coordenadaX + ", " + coordenaY + ")}";
+        return "Triangle " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y vertice 1 en=" + this.vertice1 + ", vertice 2 en =" + this.vertice2 + ", vertice 3 en=" + this.vertice3;
     }
 
     @Override

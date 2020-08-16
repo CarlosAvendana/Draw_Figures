@@ -34,7 +34,7 @@ public class Model {
                 r = Double.parseDouble(arr[2]);
                 g.draw(new Ellipse2D.Double(x - r / 2, y - r / 2, r, r));
                 this.insertCirle(r, x, y);
-                areaMensajes.setText("Figura" + this.listaFiguras.size() + "Circulo con area");
+//                areaMensajes.setText("Figura" + this.listaFiguras.size() + "Circulo con area");
                 break;
             case "square":
                 x = Double.parseDouble(arr[1]);
@@ -128,29 +128,26 @@ public class Model {
             area.setText("No hay figuras");
         } else {
             for (int i = 0; i < this.listaFiguras.size(); i++) {
-                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Circle")) {
-                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
-                }
-                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Ellipse")) {
-                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
-                }
-                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Rectangle")) {
-                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
-                }
-                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Square")) {
-                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
-                }
-                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Triangle")) {
-                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
-                }
-                if (this.listaFiguras.get(i).getClass().getSimpleName().equals("Donut")) {
-                    f += "Figura #" + i + " " + this.listaFiguras.get(i).getClass().getSimpleName() + " con coordenadas x,y" + "(" + this.listaFiguras.get(i).coordenadaX + "," + this.listaFiguras.get(i).coordenaY + ")" + "\n";
-                }
+
+                f += "Figura #" + i + " " + this.listaFiguras.get(i).toString() + "\n";
 
             }//cierre del for 
             f += "Figuras en total:" + this.listaFiguras.size() + "\n";
             area.setText(f);
         }
+
+    }
+
+    public void comandoHelp(JTextArea area) {
+        String f = "";
+        f += "Acaba de ingresar el comando help en este comando podra ver la lista de comandos y como usarlos para la creación de figuras\n"
+                + ",tambien como cargar el archivo.\n"
+                + "Para cargar un archivos de textro por favor dirigirse a la barra del menu y seleccionar file y load\n"
+                + "Una ve en el seleccionador de archivos seleccione el archivo que quiera cargar en la aplicacion.\n"
+                + "---------------------------------------------------------------------------------------------------\n"
+                + "\tLista de mandos\t\n"
+                + "circle coordenadaX coordenadaY radio\n"
+                + "donut coordenadaX coordenadaY radio\n";
 
     }
 

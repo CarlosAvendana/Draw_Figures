@@ -45,7 +45,8 @@ public class Circle extends Figure {
 
     @Override
     public String toString() {
-        return "Circle{" + "radio=" + radio + '}';
+        return "Circle " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y radio=" + radio + ".";
+
     }
 
     @Override

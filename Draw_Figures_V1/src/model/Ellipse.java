@@ -54,7 +54,8 @@ public class Ellipse extends Figure {
 
     @Override
     public String toString() {
-        return "Ellipse{" + "radioMenor=" + radioMenor + ", radioMayor=" + radioMayor + '}';
+
+        return "Ellipse " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y radio menor =" + radioMenor + ", radio mayor =" + this.radioMayor;
     }
 
     @Override
