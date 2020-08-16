@@ -26,6 +26,7 @@ public class Model {
         String[] arr = command.split(" ");
         Graphics2D g = (Graphics2D) pg;
         double x, y, l, r, b, h, x2, y2, x3, y3, rme, rma, width, height;
+        int numeroF;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         switch (arr[0]) {
             case "circle":
@@ -34,7 +35,8 @@ public class Model {
                 r = Double.parseDouble(arr[2]);
                 g.draw(new Ellipse2D.Double(x - r / 2, y - r / 2, r, r));
                 this.insertCirle(r, x, y);
-//                areaMensajes.setText("Figura" + this.listaFiguras.size() + "Circulo con area");
+                Circle c = new Circle(r, x, y);
+                areaMensajes.setText("Figura # " + (this.listaFiguras.size() - 1) + " " + c.toString());
                 break;
             case "square":
                 x = Double.parseDouble(arr[1]);
@@ -42,6 +44,8 @@ public class Model {
                 l = Double.parseDouble(arr[3]);
                 g.draw(new Rectangle2D.Double(x, y, l, l));
                 this.insertSquare(l, x, y);
+                Square sq = new Square(l, x, y);
+                areaMensajes.setText("Figura # " + (this.listaFiguras.size() - 1) + " " + sq.toString());
                 break;
             case "rectangle":
                 x = Double.parseDouble(arr[1]);
@@ -50,6 +54,8 @@ public class Model {
                 h = Double.parseDouble(arr[4]);
                 g.draw(new Rectangle2D.Double(x, y, b, h));
                 this.insertRectangle(b, h, x, y);
+                Rectangle rec = new Rectangle(b, h, x, y);
+                areaMensajes.setText("Figura # " + (this.listaFiguras.size() - 1) + " " + rec.toString());
                 break;
             case "triangle":
                 x = Double.parseDouble(arr[1]);
@@ -62,6 +68,8 @@ public class Model {
                 g.draw(new Line2D.Double(x, y, x3, y3));
                 g.draw(new Line2D.Double(x2, y2, x3, y3));
                 this.insertTriangle(x, y, x2, y2, x3, y3);
+                Triangle tri = new Triangle(x2, y2, x3, y3, x, y);
+                areaMensajes.setText("Figura # " + (this.listaFiguras.size() - 1) + " " + tri.toString());
                 break;
             case "donut":
                 rme = Double.parseDouble(arr[3]);
@@ -71,6 +79,8 @@ public class Model {
                 g.draw(new Ellipse2D.Double(x - rme / 2, y - rme / 2, rme, rme));
                 g.draw(new Ellipse2D.Double(x - rma / 2, y - rma / 2, rma, rma));
                 this.insertDonut(rme, rma, x, y);
+                Donut dot = new Donut(rme, rma, x, y);
+                areaMensajes.setText("Figura # " + (this.listaFiguras.size() - 1) + " " + dot.toString());
                 break;
             case "ellipse":
                 x = Double.parseDouble(arr[1]);
@@ -79,13 +89,26 @@ public class Model {
                 height = Double.parseDouble(arr[4]);
                 g.draw(new Ellipse2D.Double(x, y, width, height));
                 this.insertEllipse(width, height, x, y);
+                Ellipse eli = new Ellipse(width, height, x, y);
+                areaMensajes.setText("Figura # " + (this.listaFiguras.size() - 1) + " " + eli.toString());
+
                 break;
             case "list\r\n":
                 this.listarFiguras(areaMensajes);
 
                 break;
+            case "help\r\n":
+                this.comandoHelp(areaMensajes);
+                break;
+            case "exit\r\n":
+                System.exit(0);
+                break;
+            case "delete":
+                numeroF = Integer.parseInt(arr[1].trim());
+                this.eliminaFigura(areaMensajes, numeroF);
+                break;
             default:
-                System.out.println("Error");
+                areaMensajes.setText("Error en el comando por favor consulte el comando help");
                 break;
 
         }
@@ -140,15 +163,43 @@ public class Model {
 
     public void comandoHelp(JTextArea area) {
         String f = "";
-        f += "Acaba de ingresar el comando help en este comando podra ver la lista de comandos y como usarlos para la creación de figuras\n"
-                + ",tambien como cargar el archivo.\n"
-                + "Para cargar un archivos de textro por favor dirigirse a la barra del menu y seleccionar file y load\n"
-                + "Una ve en el seleccionador de archivos seleccione el archivo que quiera cargar en la aplicacion.\n"
-                + "---------------------------------------------------------------------------------------------------\n"
+        f += "Acaba de ingresar el comando help en este\n"
+                + "comando podra ver la lista de comandos\n"
+                + "y como usarlos para la creación de figuras,\n"
+                + "tambien como cargar el archivo.\n"
+                + "Para cargar un archivos de textro por favor\n"
+                + "dirigirse a la barra del menu y seleccionar\n"
+                + "file y load."
+                + "Una ve en el seleccionador de archivos\n"
+                + "seleccione el archivo que quiera cargar en\n"
+                + "la aplicacion.\n"
+                + "---------------------------------------------------------------------------------\n"
                 + "\tLista de mandos\t\n"
                 + "circle coordenadaX coordenadaY radio\n"
-                + "donut coordenadaX coordenadaY radio\n";
+                + "donut coordenadaX coordenadaY radioMenor radioMayor\n"
+                + "ellipse coordenaX coordenaY radioMenor radioMayor\n"
+                + "rectangle coordenaX coordenaY base altura\n"
+                + "square coordenaX coordenaY logintudLado\n"
+                + "triangle coordenaX coordenaY V1 V2 V3 V4\n"
+                + "exit (para cerrar el programa)\n"
+                + "A B para averigurar que figura contiene ese punto A=numero y B=numero\n"
+                + "delete numero de figura a eliminar consultar el comando list solo un parametro\n"
+                + "---------------------------------------------------------------------------------\n";
+        area.setText(f);
 
+    }
+
+    public void eliminaFigura(JTextArea area, int numeroF) {
+        if (this.listaFiguras.isEmpty()) {
+            area.setText("No hay figura para eliminar\n Cree otras figuras");
+        } else {
+            if (numeroF < 0 || numeroF > this.listaFiguras.size()) {
+                area.setText("Digite un numero correcto para la eliminacion de figuras");
+            } else {
+                this.listaFiguras.remove(numeroF);
+                area.setText("\tFigura eliminada\t");
+            }
+        }
     }
 
 }
