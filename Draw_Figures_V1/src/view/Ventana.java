@@ -6,6 +6,9 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import model.Figure;
+import java.io.File;
+import javax.swing.JFileChooser;
+import model.ReadFile;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -47,8 +50,6 @@ public class Ventana extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadFileOption = new javax.swing.JMenuItem();
-        informationMenu = new javax.swing.JMenu();
-        DeveloperInfoOption = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,21 +83,14 @@ public class Ventana extends javax.swing.JFrame {
         fileMenu.setText("File");
 
         loadFileOption.setText("Load");
+        loadFileOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadFileOptionActionPerformed(evt);
+            }
+        });
         fileMenu.add(loadFileOption);
 
         menuBar.add(fileMenu);
-
-        informationMenu.setText("Information");
-
-        DeveloperInfoOption.setText("Developers");
-        DeveloperInfoOption.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeveloperInfoOptionActionPerformed(evt);
-            }
-        });
-        informationMenu.add(DeveloperInfoOption);
-
-        menuBar.add(informationMenu);
 
         setJMenuBar(menuBar);
 
@@ -104,18 +98,18 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 1058, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanelTextoScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                .addComponent(panelDeDibujo, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -128,10 +122,6 @@ public class Ventana extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void DeveloperInfoOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeveloperInfoOptionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeveloperInfoOptionActionPerformed
 
     private void jTextPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyReleased
 
@@ -147,6 +137,19 @@ public class Ventana extends javax.swing.JFrame {
             this.repaint();
         }
     }//GEN-LAST:event_panelTextoKeyReleased
+
+    private void loadFileOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileOptionActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fc.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fc.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+            ReadFile r = new ReadFile(selectedFile.getAbsolutePath());
+            control.setListaFiguras(r.getListaFiguras());
+        }
+    }//GEN-LAST:event_loadFileOptionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,11 +193,9 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem DeveloperInfoOption;
     private javax.swing.JScrollPane PanelTextoScroll;
     private javax.swing.JPanel VentanaDibujo;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu informationMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem loadFileOption;
     private javax.swing.JMenuBar menuBar;
