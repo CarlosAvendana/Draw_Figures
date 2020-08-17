@@ -74,12 +74,12 @@ public class Donut extends Figure {
         Graphics2D gd = (Graphics2D) cg;
         gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMenor,
                 this.coordenaY - this.radioMenor,
-                2*this.radioMenor,
-                2*this.radioMenor));
+                2 * this.radioMenor,
+                2 * this.radioMenor));
         gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMayor,
                 this.coordenaY - this.radioMayor,
-                2*this.radioMayor,
-                2*this.radioMayor));
+                2 * this.radioMayor,
+                2 * this.radioMayor));
     }
 
     @Override

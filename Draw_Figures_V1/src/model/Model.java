@@ -21,7 +21,6 @@ public class Model {
         String[] arr = command.split(" ");
         double x, y, l, r, b, h, x2, y2, x3, y3, rme, rma, width, height;
         int numeroF;
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         switch (arr[0]) {
             case "circle":
                 x = Double.parseDouble(arr[1]);
@@ -55,7 +54,7 @@ public class Model {
                 y2 = Double.parseDouble(arr[4]);
                 x3 = Double.parseDouble(arr[5]);
                 y3 = Double.parseDouble(arr[6]);
-                this.insertTriangle(x,y,x2, y2,x3, y3);
+                this.insertTriangle(x, y, x2, y2, x3, y3);
                 Triangle tri = new Triangle(x2, y2, x3, y3, x, y);
                 areaMensajes.setText("Figura # " + (this.listaFiguras.size() - 1) + " " + tri.toString());
                 break;
@@ -106,34 +105,41 @@ public class Model {
         c.calculaArea();
         this.listaFiguras.add(c);
     }
+
     public void insertDonut(double radioMenor, double radioMayor, double cx, double cy) {
         Donut d = new Donut(radioMenor, radioMayor, cx, cy);
         d.calculaArea();
         this.listaFiguras.add(d);
     }
+
     public void insertEllipse(double radioMenor, double radioMayor, double cx, double cy) {
         Ellipse e = new Ellipse(radioMenor, radioMayor, cx, cy);
         e.calculaArea();
         this.listaFiguras.add(e);
     }
+
     public void insertRectangle(double base, double altura, double cx, double cy) {
         Rectangle r = new Rectangle(base, altura, cx, cy);
         r.calculaArea();
         this.listaFiguras.add(r);
     }
+
     public void insertTriangle(double vertice1, double vertice2, double vertice3, double vertice4, double vertice5, double vertice6) {
         Triangle t = new Triangle(vertice1, vertice2, vertice3, vertice4, vertice5, vertice6);
         t.calculaArea();
         this.listaFiguras.add(t);
     }
+
     public void insertSquare(double logintudLado, double cx, double cy) {
         Square s = new Square(logintudLado, cx, cy);
         s.calculaArea();
         this.listaFiguras.add(s);
     }
+
     public ArrayList<Figure> getFiguras() {
         return this.listaFiguras;
     }
+
     public void listarFiguras(JTextArea area) {
         String f = "";
 
@@ -150,6 +156,7 @@ public class Model {
         }
 
     }
+
     public void comandoHelp(JTextArea area) {
         String f = "";
         f += "Acaba de ingresar el comando help en este\n"
@@ -171,9 +178,8 @@ public class Model {
                 + "square coordenaX coordenaY logintudLado\n"
                 + "triangle coordenaX coordenaY V1 V2 V3 V4\n"
                 + "exit (para cerrar el programa)\n"
-                + "A B para averigurar que figura contiene ese punto A=numero y B=numero\n"
                 + "delete numero de figura a eliminar consultar el comando list solo un parametro\n"
-                + "punto coordenadaX coordenadaY"
+                + "punto coordenadaX coordenadaY, para que se listen las figuras que contienen el punto\n"
                 + "---------------------------------------------------------------------------------\n";
         area.setText(f);
 
@@ -199,22 +205,23 @@ public class Model {
     public void setListaFiguras(ArrayList<Figure> listaFiguras) {
         this.listaFiguras = listaFiguras;
     }
-    public void comandoCoordenadas(JTextArea area, double xp, double yp){
+
+    public void comandoCoordenadas(JTextArea area, double xp, double yp) {
         String f = "";
         boolean flag = false;
-        
-        if(this.listaFiguras.size() == 0){
+
+        if (this.listaFiguras.size() == 0) {
             area.setText("No hay figuras");
-       }else{
-            f = "La lista de figuras que contienen el punto ("+xp+", "+yp+") es la siguiente: \n";
-            for(int i = 0; i < this.listaFiguras.size(); i++){
-                f += "Figura #"+i+" "+this.listaFiguras.get(i).toString() + "\n";
+        } else {
+            f = "La lista de figuras que contienen el punto (" + xp + ", " + yp + ") es la siguiente: \n";
+            for (int i = 0; i < this.listaFiguras.size(); i++) {
+                f += "Figura #" + i + " " + this.listaFiguras.get(i).toString() + "\n";
                 flag = true;
             }
         }
-        if(flag == true){
+        if (flag == true) {
             area.setText(f);
-        }else{
+        } else {
             f = "No se encontraron figuras que contenieran el punto.";
             area.setText(f);
         }

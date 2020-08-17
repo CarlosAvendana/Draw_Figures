@@ -16,17 +16,17 @@ public class Figure {
                 + ", coordenadaX=" + coordenadaX
                 + ", coordenaY=" + coordenaY + '}';
     }
-    
-    public boolean puntoEnFigura(double xp, double yp){
+
+    public boolean puntoEnFigura(double xp, double yp) {
         return true;
     }
 
     public void calculaArea() {
-        
+
     }
-    
-    public void dibujar(Graphics g){
-        
+
+    public void dibujar(Graphics g) {
+
     }
 
     public String getNombreFigura() {

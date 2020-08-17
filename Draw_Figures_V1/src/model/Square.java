@@ -48,24 +48,24 @@ public class Square extends Figure {
 
     @Override
     public String toString() {
-        return "square " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + ", longitud de lado= " + this.logintudLado +" y area= "+this.area+ ".";
+        return "square " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + ", longitud de lado= " + this.logintudLado + " y area= " + this.area + ".";
 
     }
 
     @Override
     public void calculaArea() {
         double areaAux = Math.pow(this.logintudLado, 2);
-        this.area =  areaAux;
+        this.area = areaAux;
     }
-    
+
     @Override
-    public void dibujar(Graphics cg){
+    public void dibujar(Graphics cg) {
         Graphics2D dg = (Graphics2D) cg;
-        dg.draw(new Rectangle2D.Double(this.coordenadaX,this.coordenaY,this.logintudLado,this.logintudLado));
+        dg.draw(new Rectangle2D.Double(this.coordenadaX, this.coordenaY, this.logintudLado, this.logintudLado));
     }
-    
+
     @Override
-    public boolean puntoEnFigura(double xp, double yp){
+    public boolean puntoEnFigura(double xp, double yp) {
         double lado = this.logintudLado / 2;
         double xcentro = this.coordenadaX + lado;
         double ycentro = this.coordenaY - lado;

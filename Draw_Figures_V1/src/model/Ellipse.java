@@ -59,7 +59,7 @@ public class Ellipse extends Figure {
     @Override
     public String toString() {
 
-        return "Ellipse " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y radio menor =" + radioMenor + ", radio mayor =" + this.radioMayor+" y area = "+this.area+".";
+        return "Ellipse " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y radio menor =" + radioMenor + ", radio mayor =" + this.radioMayor + " y area = " + this.area + ".";
     }
 
     @Override
@@ -67,15 +67,15 @@ public class Ellipse extends Figure {
         double areaAux = Math.PI * this.radioMayor * this.radioMenor;
         this.area = areaAux;
     }
-    
+
     @Override
-    public void dibujar(Graphics cg){
+    public void dibujar(Graphics cg) {
         Graphics2D gd = (Graphics2D) cg;
-        gd.draw(new Ellipse2D.Double(this.coordenadaX,this.coordenaY,2 * this.radioMenor, 2 * this.radioMayor));
+        gd.draw(new Ellipse2D.Double(this.coordenadaX, this.coordenaY, 2 * this.radioMenor, 2 * this.radioMayor));
     }
-    
+
     @Override
-    public boolean puntoEnFigura(double xp, double yp){
-        return (((Math.pow((xp - this.coordenadaX), 2)) / Math.pow(this.radioMayor, 2) + (Math.pow((yp - this.coordenaY), 2)) / Math.pow(this.radioMenor, 2) ) <= 1);
+    public boolean puntoEnFigura(double xp, double yp) {
+        return (((Math.pow((xp - this.coordenadaX), 2)) / Math.pow(this.radioMayor, 2) + (Math.pow((yp - this.coordenaY), 2)) / Math.pow(this.radioMenor, 2)) <= 1);
     }
 }

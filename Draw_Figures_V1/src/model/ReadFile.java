@@ -29,7 +29,7 @@ public class ReadFile {
 
     public String allData() {
 
-        try (Scanner scanner = new Scanner(new File(this.path));) {
+        try ( Scanner scanner = new Scanner(new File(this.path));) {
             scanner.useDelimiter("\\A");
             this.allData = scanner.next();
         } catch (FileNotFoundException ex) {

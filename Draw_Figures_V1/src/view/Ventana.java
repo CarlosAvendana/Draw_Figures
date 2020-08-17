@@ -148,6 +148,7 @@ public class Ventana extends javax.swing.JFrame {
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
             ReadFile r = new ReadFile(selectedFile.getAbsolutePath());
             control.setListaFiguras(r.getListaFiguras());
+            this.repaint();
         }
     }//GEN-LAST:event_loadFileOptionActionPerformed
 
