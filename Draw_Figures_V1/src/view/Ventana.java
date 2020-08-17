@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import java.awt.Graphics;
+import java.awt.event.AdjustmentEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import model.Figure;
@@ -13,6 +14,7 @@ public class Ventana extends javax.swing.JFrame {
     public Ventana() {
         initComponents();
         control = new Controller();
+        this.addScrollListener(this);
     }
 
     @Override
@@ -20,6 +22,16 @@ public class Ventana extends javax.swing.JFrame {
         super.paint(g);
         ArrayList<Figure> lf = this.control.getFiguras();
         lf.forEach((f) -> f.dibujar(VentanaDibujo.getGraphics()));
+    }
+
+    private void addScrollListener(Ventana aux) {
+        panelDeDibujo.getVerticalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            aux.repaint();
+        });
+
+        panelDeDibujo.getHorizontalScrollBar().addAdjustmentListener((AdjustmentEvent e) -> {
+            aux.repaint();
+        });
     }
 
     @SuppressWarnings("unchecked")

@@ -59,26 +59,35 @@ public class Donut extends Figure {
     @Override
     public String toString() {
 
-        return "Donut " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y radio menor =" + radioMenor + ", radio mayor =" + this.radioMayor;
+        return "Donut " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + ", radio menor =" + radioMenor + ", radio mayor =" + this.radioMayor + " y area = " + this.area + ".";
 
     }
 
     @Override
-    public double calculaArea() {
+    public void calculaArea() {
         double areaAux = Math.PI * (Math.pow(this.radioMayor, 2) - Math.pow(this.radioMenor, 2));
-        return areaAux;
+        this.area = areaAux;
     }
-    
+
     @Override
-    public void dibujar(Graphics cg){
+    public void dibujar(Graphics cg) {
         Graphics2D gd = (Graphics2D) cg;
-        gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMenor/2,
-                this.coordenaY - this.radioMenor/2,
-                this.radioMenor,
-                this.radioMenor));
-        gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMayor/2,
-                this.coordenaY - this.radioMayor/2,
-                this.radioMayor,
-                this.radioMayor));
+        gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMenor,
+                this.coordenaY - this.radioMenor,
+                2*this.radioMenor,
+                2*this.radioMenor));
+        gd.draw(new Ellipse2D.Double(this.coordenadaX - this.radioMayor,
+                this.coordenaY - this.radioMayor,
+                2*this.radioMayor,
+                2*this.radioMayor));
+    }
+
+    @Override
+    public boolean puntoEnFigura(double xp, double yp) {
+        boolean aux = false;
+        if ((Math.pow((this.coordenadaX - xp), 2) + Math.pow((this.coordenaY - yp), 2) <= this.radioMayor) && (Math.pow((this.coordenadaX - xp), 2) + Math.pow((this.coordenaY - yp), 2) >= this.radioMenor)) {
+            aux = true;
+        }
+        return aux;
     }
 }

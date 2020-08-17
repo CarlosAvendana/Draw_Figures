@@ -66,47 +66,50 @@ public class Model {
                 break;
             case "list\r\n":
                 this.listarFiguras(areaMensajes);
-
                 break;
+            case "punto":
+                x = Double.parseDouble(arr[1]);
+                y = Double.parseDouble(arr[2]);
+                this.comandoCoordenadas(areaMensajes, x, y);
             default:
                 System.out.println("Error");
                 break;
-
         }
     }
 
     public void insertCirle(double r, double cx, double cy) {
         Circle c = new Circle(r, cx, cy);
+        c.calculaArea();
         this.listaFiguras.add(c);
     }
-
     public void insertDonut(double radioMenor, double radioMayor, double cx, double cy) {
         Donut d = new Donut(radioMenor, radioMayor, cx, cy);
+        d.calculaArea();
         this.listaFiguras.add(d);
     }
-
     public void insertEllipse(double radioMenor, double radioMayor, double cx, double cy) {
         Ellipse e = new Ellipse(radioMenor, radioMayor, cx, cy);
+        e.calculaArea();
         this.listaFiguras.add(e);
     }
-
     public void insertRectangle(double base, double altura, double cx, double cy) {
         Rectangle r = new Rectangle(base, altura, cx, cy);
+        r.calculaArea();
         this.listaFiguras.add(r);
     }
-
     public void insertTriangle(double vertice1, double vertice2, double vertice3, double vertice4, double vertice5, double vertice6) {
         Triangle t = new Triangle(vertice1, vertice2, vertice3, vertice4, vertice5, vertice6);
+        t.calculaArea();
         this.listaFiguras.add(t);
     }
-
     public void insertSquare(double logintudLado, double cx, double cy) {
         Square s = new Square(logintudLado, cx, cy);
+        s.calculaArea();
         this.listaFiguras.add(s);
     }
-
     public ArrayList<Figure> getFiguras() {
         return this.listaFiguras;
+    }
     public void listarFiguras(JTextArea area) {
         String f = "";
 
@@ -123,7 +126,6 @@ public class Model {
         }
 
     }
-
     public void comandoHelp(JTextArea area) {
         String f = "";
         f += "Acaba de ingresar el comando help en este comando podra ver la lista de comandos y como usarlos para la creación de figuras\n"
@@ -133,8 +135,29 @@ public class Model {
                 + "---------------------------------------------------------------------------------------------------\n"
                 + "\tLista de mandos\t\n"
                 + "circle coordenadaX coordenadaY radio\n"
-                + "donut coordenadaX coordenadaY radio\n";
+                + "donut coordenadaX coordenadaY radio\n"
+                + "punto coordenadaX coordenadaY";
 
+    }
+    public void comandoCoordenadas(JTextArea area, double xp, double yp){
+        String f = "";
+        boolean flag = false;
+        
+        if(this.listaFiguras.size() == 0){
+            area.setText("No hay figuras");
+       }else{
+            f = "La lista de figuras que contienen el punto ("+xp+", "+yp+") es la siguiente: \n";
+            for(int i = 0; i < this.listaFiguras.size(); i++){
+                f += "Figura #"+i+" "+this.listaFiguras.get(i).toString() + "\n";
+                flag = true;
+            }
+        }
+        if(flag == true){
+            area.setText(f);
+        }else{
+            f = "No se encontraron figuras que contenieran el punto.";
+            area.setText(f);
+        }
     }
 
 }

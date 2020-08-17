@@ -58,18 +58,56 @@ public class Rectangle extends Figure {
 
     @Override
     public String toString() {
-        return "rectangle " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y base= " + base + ", y altura= " + altura + ".";
+        return "rectangle " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + ", base= " + base + ", altura= " + altura +" y area= "+this.area+ ".";
 
     }
 
     @Override
-    public double calculaArea() {
+    public void calculaArea() {
         double areaAux = this.base * this.altura;
-        return areaAux;
+        this.area = areaAux;
     }
     
+    @Override
     public void dibujar(Graphics cg){
         Graphics2D dg = (Graphics2D) cg;
         dg.draw(new Rectangle2D.Double(this.coordenadaX,this.coordenaY,this.base,this.altura));
+    }
+    
+    @Override
+    public boolean puntoEnFigura(double xp, double yp){
+        boolean aux = false;
+        double x2 = this.coordenadaX + this.base;
+        double y2 = this.coordenaY + this.altura;
+        double areaT1 = 0.0;
+        double areaT2 = 0.0;
+        double areaT3 = 0.0;
+        double areaT4 = 0.0;
+        
+        double lado1 = Math.sqrt(Math.pow((xp - this.coordenadaX), 2) + Math.pow((yp - this.coordenaY), 2));
+        double lado2 = Math.sqrt(Math.pow((xp - this.coordenadaX), 2) + Math.pow((yp - y2), 2));
+        double lado3 = Math.sqrt(Math.pow((this.coordenadaX - this.coordenadaX), 2) + Math.pow((this.coordenaY - y2), 2));
+        double sp = (lado1+lado2+lado3)/2;
+        areaT1 = Math.sqrt(sp *( (sp-lado1) * (sp - lado2) * (sp-lado3)));
+        
+        lado1 = Math.sqrt(Math.pow((xp - x2), 2) + Math.pow((yp - y2), 2));
+        lado2 = Math.sqrt(Math.pow((xp - x2), 2) + Math.pow((yp - this.coordenaY), 2));
+        lado3 = Math.sqrt(Math.pow((x2 - x2), 2) + Math.pow((y2 - this.coordenaY), 2));
+        sp = (lado1+lado2+lado3)/2;
+        areaT2 = Math.sqrt(sp *( (sp-lado1) * (sp - lado2) * (sp-lado3)));
+        
+        lado1 = Math.sqrt(Math.pow((xp - this.coordenadaX), 2) + Math.pow((yp - this.coordenaY), 2));
+        lado2 = Math.sqrt(Math.pow((xp - x2), 2) + Math.pow((yp - this.coordenaY), 2));
+        lado3 = Math.sqrt(Math.pow((this.coordenadaX - x2), 2) + Math.pow((this.coordenaY - this.coordenaY), 2));
+        sp = (lado1+lado2+lado3)/2;
+        areaT3 = Math.sqrt(sp *( (sp-lado1) * (sp - lado2) * (sp-lado3)));
+        
+        lado1 = Math.sqrt(Math.pow((xp - this.coordenadaX), 2) + Math.pow((yp - this.coordenaY), 2));
+        lado2 = Math.sqrt(Math.pow((xp - x2), 2) + Math.pow((yp - y2), 2));
+        lado3 = Math.sqrt(Math.pow((this.coordenadaX - x2), 2) + Math.pow((y2 - y2), 2));
+        sp = (lado1+lado2+lado3)/2;
+        areaT4 = Math.sqrt(sp *( (sp-lado1) * (sp - lado2) * (sp-lado3)));
+        
+        return ((areaT1 + areaT2 + areaT3 + areaT4) == this.area);
     }
 }

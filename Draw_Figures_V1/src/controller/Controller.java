@@ -35,7 +35,9 @@ public class Controller {
 
     public ArrayList<Figure> getFiguras() {
         return this.m.getFiguras();
-    public void dibujarFigura(Graphics graphics, String comando, JTextArea muestraMensajePantalla) {
-        this.m.dibujarFigura(graphics, comando, muestraMensajePantalla);
+    }
+    
+    public void dibujarFigura(String comando, JTextArea muestraMensajePantalla) {
+        this.m.dibujarFigura(comando, muestraMensajePantalla);
     }
 }

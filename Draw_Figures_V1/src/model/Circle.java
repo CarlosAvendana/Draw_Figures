@@ -49,20 +49,20 @@ public class Circle extends Figure {
 
     @Override
     public String toString() {
-        return "Circle " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + "y radio=" + radio + ".";
+        return "Circle " + " con coordenadas (x,y) " + " (" + this.coordenadaX + "," + this.coordenaY + ") " + ", radio=" + radio + " y area= "+this.area+".";
 
     }
 
     @Override
-    public double calculaArea() {
+    public void calculaArea() {
         double areaAux = Math.PI * Math.pow(this.radio, 2);
-        return areaAux;
+        this.area = areaAux;
     }
     
     @Override
     public void dibujar(Graphics cg){
         Graphics2D gd = (Graphics2D) cg;
-        gd.draw(new Ellipse2D.Double((this.coordenadaX - (this.radio/2)),(this.coordenaY - (this.radio/2)),2 * this.radio,2 * this.radio));
+        gd.draw(new Ellipse2D.Double((this.coordenadaX - this.radio),(this.coordenaY - this.radio),2 * this.radio,2 * this.radio));
     }
 
     @Override
@@ -73,6 +73,11 @@ public class Circle extends Figure {
     @Override
     public String getNombreFigura() {
         return super.getNombreFigura(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public boolean puntoEnFigura(double xp, double yp){
+        return (Math.pow(this.coordenadaX - xp, 2) + Math.pow(this.coordenaY - yp, 2 ) <= Math.pow(this.radio,2));
     }
 
 }

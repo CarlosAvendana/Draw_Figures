@@ -16,9 +16,13 @@ public class Figure {
                 + ", coordenadaX=" + coordenadaX
                 + ", coordenaY=" + coordenaY + '}';
     }
+    
+    public boolean puntoEnFigura(double xp, double yp){
+        return true;
+    }
 
-    public double calculaArea() {
-        return area;
+    public void calculaArea() {
+        
     }
     
     public void dibujar(Graphics g){
