@@ -1,7 +1,9 @@
 package controller;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import javax.swing.JTextArea;
+import model.Figure;
 import model.Model;
 
 /**
@@ -14,6 +16,10 @@ public class Controller {
 
     public Controller() {
         this.m = new Model();
+    }
+
+    public void setListaFiguras(ArrayList<Figure> listaFiguras) {
+        m.setListaFiguras(listaFiguras);
     }
 //
 //    public void dibujarFigura(Graphics pg, String c) {

@@ -2,6 +2,9 @@ package view;
 
 import controller.Controller;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.JFileChooser;
+import model.ReadFile;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -25,8 +28,6 @@ public class Ventana extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         loadFileOption = new javax.swing.JMenuItem();
-        informationMenu = new javax.swing.JMenu();
-        DeveloperInfoOption = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,21 +61,14 @@ public class Ventana extends javax.swing.JFrame {
         fileMenu.setText("File");
 
         loadFileOption.setText("Load");
+        loadFileOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadFileOptionActionPerformed(evt);
+            }
+        });
         fileMenu.add(loadFileOption);
 
         menuBar.add(fileMenu);
-
-        informationMenu.setText("Information");
-
-        DeveloperInfoOption.setText("Developers");
-        DeveloperInfoOption.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeveloperInfoOptionActionPerformed(evt);
-            }
-        });
-        informationMenu.add(DeveloperInfoOption);
-
-        menuBar.add(informationMenu);
 
         setJMenuBar(menuBar);
 
@@ -107,10 +101,6 @@ public class Ventana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DeveloperInfoOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeveloperInfoOptionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeveloperInfoOptionActionPerformed
-
     private void jTextPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -131,6 +121,19 @@ public class Ventana extends javax.swing.JFrame {
             panelTexto.setText("");
         }
     }//GEN-LAST:event_panelTextoKeyReleased
+
+    private void loadFileOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileOptionActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fc.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fc.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+            ReadFile r = new ReadFile(selectedFile.getAbsolutePath());
+            control.setListaFiguras(r.getListaFiguras());
+        }
+    }//GEN-LAST:event_loadFileOptionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,11 +176,9 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem DeveloperInfoOption;
     private javax.swing.JScrollPane PanelTextoScroll;
     private javax.swing.JPanel VentanaDibujo;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu informationMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem loadFileOption;
     private javax.swing.JMenuBar menuBar;

@@ -13,20 +13,8 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Load"/>
               </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="informationMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Information"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="DeveloperInfoOption">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Developers"/>
-              </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeveloperInfoOptionActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadFileOptionActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -32,7 +32,7 @@ public class Model {
             case "circle":
                 x = Double.parseDouble(arr[1]);
                 y = Double.parseDouble(arr[2]);
-                r = Double.parseDouble(arr[2]);
+                r = Double.parseDouble(arr[3]);
                 g.draw(new Ellipse2D.Double(x - r / 2, y - r / 2, r, r));
                 this.insertCirle(r, x, y);
                 Circle c = new Circle(r, x, y);
@@ -200,6 +200,14 @@ public class Model {
                 area.setText("\tFigura eliminada\t");
             }
         }
+    }
+
+    public ArrayList<Figure> getListaFiguras() {
+        return listaFiguras;
+    }
+
+    public void setListaFiguras(ArrayList<Figure> listaFiguras) {
+        this.listaFiguras = listaFiguras;
     }
 
 }
